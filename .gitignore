@@ -1,0 +1,35 @@
+# ========================================
+# MemView - Git ignore rules
+# ========================================
+
+# Temporary files
+*.tmp
+*~
+*.swp
+
+# GCC / Clang compiled object files
+*.o
+
+# Microsoft compiler object files
+*.obj
+
+# Executable files
+*.exe
+
+# Debugging files
+*.pdb
+*.ilk
+
+# Build output directories
+build/
+bin/
+cmake-build-*/
+
+# Visual Studio local files
+.vs/
+*.suo
+*.user
+
+# CLion local configuration
+.idea/
+
