@@ -107,4 +107,3 @@ It can include headers, expand macros, and select parts of the source code throu
 Understanding preprocessing helps us investigate compiler behavior and diagnose problems involving macros and header files.
 
 **Important:** Preprocessing does not create an executable program. Additional compilation, assembling, and linking steps are still necessary.
-
