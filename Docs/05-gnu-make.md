@@ -597,6 +597,8 @@ We improved **one build** in deliberate stages:
 
 The most important principle is not remembering every special symbol. It is understanding **what the explicit rule meant before we abbreviated it**.
 
-> **Documentation illustration:** The planned GNU Make cheat sheet will be stored as `pictures/gnu_makefile_cheat_sheet.png`. Until the image is committed, all examples remain fully explained in text.
+![GNU Make cheat sheet: explicit rules, variables, pattern rules, and MemView build workflow](../pictures/gnu_makefile_cheat_sheet.png)
+
+*GNU Make quick reference for MemView. Refer to the commented, copyable Makefile examples above when writing commands.*
 
 Next we will return to the C language itself: types, objects, byte sizes, and the memory model. More elaborate Make rules will come later, when MemView has actual modules and tests.
