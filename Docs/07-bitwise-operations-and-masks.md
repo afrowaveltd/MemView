@@ -28,7 +28,7 @@ Binary:       10100101
 
 A memory viewer must sometimes read one individual bit, not only the entire byte. This is exactly what bitwise operations help us do.
 
-**Terminology note:** In C, the logical operators `&&`, `||`, and `!` work with truth values and comparisons. The bitwise operators `&`, `|`, `^`, and ``` work on the bits of integer operands. Although C# also allows certain operators on `bool` values, we are studying the *integer bitwise* meaning here.
+**Terminology note:** In C, the logical operators `&&`, `||`, and `!` work with truth values and comparisons. The bitwise operators `&`, `|`, `^`, and `~` work on the bits of integer operands. Although C# also allows certain operators on `bool` values, we are studying the *integer bitwise* meaning here.
 
 ## 2. Bitwise AND, OR, XOR, and NOT
 
@@ -78,14 +78,14 @@ A result bit is 1 when the two input bits are **different**:
 
 So `a ^ b` also produces `0xFF` for these particular inputs.
 
-### 2.4 NOT: ``` 
+### 2.4 NOT: `~`
 
-NOT flips every bit. But there is an important C-specific detail: in expressions like ` `a`, an `unsigned char` operand is **integer-promoted** (usually to `int` on our system) before applying the operator.
+NOT flips every bit. But there is an important C-specific detail: in expressions like `~a`, an `unsigned char` operand is **integer-promoted** (usually to `int` on our system) before applying the operator.
 
 For that reason, when we want to show only the low eight bits, we explicitly convert the result back to `unsigned char`:
 
 ```c
-(unsigned char)(`a)
+(unsigned char)(~a)
 ```
 
 For our eight-bit sample, the resulting byte is `0x0F`.
@@ -106,7 +106,7 @@ int main(void)
     printf("a & b = 0x%02X\n", (unsigned int)(a & b));
     printf("a | b = 0x%02X\n", (unsigned int)(a | b));
     printf("a ^ b = 0x%02X\n", (unsigned int)(a ^ b));
-    printf("`a    = 0x%02X\n", (unsigned int)(unsigned char)(`a));
+    printf("~a    = 0x%02X\n", (unsigned int)(unsigned char)(~a));
 
     return 0;
 }
