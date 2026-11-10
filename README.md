@@ -1,22 +1,49 @@
 # MemView
 
-MemView is an educational memory and hexadecimal viewer written in C.
+**MemView** is an educational memory and hexadecimal viewer written in C.
 
-## Project goals
+The project is developed step by step as a practical course in C, memory representation, compilers, debuggers, Git, and terminal applications. **It is a learning project in progress, not yet a finished memory viewer.**
 
-- Learn the C programming langue from scratch.
-- Understand memory, pointers and data representation. 
-- Learn how compilers and linkers work.
-- Build a terminal user interface.
-- Support Linux and Windows
-- Practice Git and automated testing.
+## Learning objectives
 
-## Supported terminal libraries 
+- Learn the C programming language from the fundamentals.
+- Understand addresses, pointers, data types, the stack, and binary representation.
+- Investigate preprocessing, compilation, assembly, linking, and execution.
+- Build a portable terminal application with a clean separation between its logic and UI.
+- Support Linux and Windows, with **ncurses** and **PDCurses** as planned terminal backends.
+- Develop good habits in testing, debugging, version control, and documentation.
 
-- ncurces
-- PDCurses
+## Lessons
 
-## Development principles
+The lessons are written in English, with reproducible terminal commands and explanations of *why* each step matters.
 
-Unerstand first, implement second, test everything.
+1. [Set Up the Development Environment](Docs/01-setup-development-environment.md) — toolchains, terminals, editors, GCC, GDB, and Git.
+2. [Create a Project](Docs/02-create-project.md) — directories, source files, and Markdown.
+3. [Your First Git Commit](Docs/03-first-git-commit.md) — staging, commits, tags, and GitHub.
+4. [Our First C Program](Docs/04-first-c-program.md) — preprocessing, assembly, object files, linking, GDB, and memory.
+5. [GNU Make](Docs/05-gnu-make.md) — incremental builds, explicit rules, ordinary variables, automatic variables, and pattern rules.
 
+The [pictures](pictures/) directory contains diagrams and quick-reference illustrations used in the lessons.
+
+## Repository layout
+
+```text
+MemView/
+├── Docs/       # English learning materials
+├── pictures/   # Illustrations and reference sheets
+├── src/        # C source code
+├── README.md
+└── .gitignore
+```
+
+Generated files and local build experiments belong under `build/` and are not committed.
+
+## Learning approach
+
+**Understand the theory → inspect the mechanism → implement → test → document.**
+
+The repository intentionally grows in small, verifiable steps. A simple program that returns zero is useful when it helps us understand precisely what the compiler and processor are doing.
+
+## License
+
+No license is declared in this repository yet. Do not assume that the absence of a license grants permission to redistribute or modify its contents outside the permissions provided by applicable law.
