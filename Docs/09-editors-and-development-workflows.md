@@ -283,6 +283,29 @@ Then test:
 
 1. Build the repository directly in UCRT64 with `make clean && make`.
 2. Verify which native Windows executable is generated and how to run it.
+
+### Important cross-platform investigation: executable names
+
+Our current Makefile declares its target as `build/memview`, which is the native Linux executable name. Native Windows GCC commonly produces an `.exe` executable instead. Whether the Makefile sees the output as up to date is something **we still need to test**, rather than assume.
+
+In the MSYS2 UCRT64 shell, **from the repository root**:
+
+```bash
+make clean
+make
+ls -l build/memview*
+make
+```
+
+Record:
+
+- Did the compiler generate `build/memview.exe`?
+- Did the second `make` re-link the program unnecessarily?
+- Is the program runnable with `./build/memview.exe`?
+
+If this mismatch is confirmed, we will learn how to choose the executable suffix in the Makefile without maintaining two sets of C sources. **Do not hardcode a Windows-only name before confirming the environment.**
+
+This investigation also explains why the GNU Make target should normally match the exact output file produced by the linker.
 3. Open the repository folder in VS Code.
 4. Verify that its **integrated terminal** resolves the same compiler and Make executable.
 5. Configure the correct Windows GCC/MinGW IntelliSense mode and header search path.
