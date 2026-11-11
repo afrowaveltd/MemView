@@ -1,49 +1,53 @@
-# =============================================================
+
+# ==================================================
 # MemView - Main Makefile
-# =============================================================
+# ==================================================
 
 # C compiler
 CC = gcc
 
-# Compiler options
-# -std=c17	: use the C17 language standard
-# -O0		: disable optimalizations for debugging
-# -g		: include debugging information
-# -Wall		: enable common compiler warnings
-# -Wextra	: enable additional warnings
-# -pedantic	: check strict language conformance
+# Preprocessor options and header search paths
+CPPFLAGS = -Iinclude
+
+# C compiler options
 CFLAGS = -std=c17 -O0 -g -Wall -Wextra -pedantic
 
-# =============================================================
-# TARGETS
-# =============================================================
-
-# These targets represent actions, not actual files.
+# Targets that do not represent actual files
 .PHONY: all clean
 
-# Default target: build the application.
+# Default target
 all: build/memview
 
+# --------------------------------------------------
+# LINKING
+# --------------------------------------------------
 
+# Combine both object files into the executable.
+# $^ = all prerequisites
+# $@ = target
+build/memview: build/main.o build/helpers.o
+	$(CC) $^ -o $@
 
+# --------------------------------------------------
+# COMPILATION
+# --------------------------------------------------
 
-# =============================================================
-# BUILD
-# =============================================================
-
-# Target: build/memview
-# Source: src/main.c
-#
-# $< = first prerequisite (source file)
-# $@ = target (output executable)
-#
-# Create the build directory if it does not exist.
-# Then compile the source file into the executable.
-build/memview: src/main.c
+# Compile main.c.
+# Rebuild if the source or the header changes.
+build/main.o: src/main.c include/helpers.h
 	mkdir -p build
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-# Remove the generated executable.
-# -f prefents errors if the file does not exist.
+# Compile helpers.c.
+# Rebuild if the implementation or header changes.
+build/helpers.o: src/helpers.c include/helpers.h
+	mkdir -p build
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+# --------------------------------------------------
+# CLEAN
+# --------------------------------------------------
+
+# Remove generated project files.
 clean:
-	rm -f build/memview
+	rm -f build/memview build/main.o build/helpers.o
