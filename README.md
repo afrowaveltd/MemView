@@ -22,6 +22,8 @@ The lessons are written in English, with reproducible terminal commands and expl
 3. [Your First Git Commit](Docs/03-first-git-commit.md) — staging, commits, tags, and GitHub.
 4. [Our First C Program](Docs/04-first-c-program.md) — preprocessing, assembly, object files, linking, GDB, and memory.
 5. [GNU Make](Docs/05-gnu-make.md) — incremental builds, explicit rules, ordinary variables, automatic variables, and pattern rules.
+6. [C Integer Types, Bytes, and Signedness](Docs/06-c-integer-types.md) — `sizeof`, character constants, integer promotions, unsigned wraparound, and signed overflow.
+7. [Bitwise Operations, Shifts, and Masks](Docs/07-bitwise-operations-and-masks.md) — AND, OR, XOR, NOT, bit shifts, and reading individual bits.
 
 The [pictures](pictures/) directory contains diagrams and quick-reference illustrations used in the lessons.
 
