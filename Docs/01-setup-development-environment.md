@@ -20,6 +20,8 @@ It consists of several independent tools that
 work together to transform source code into
 a running application.
 
+For editor-specific configuration, verified troubleshooting cases, and cross-platform IDE testing, see [Lesson 09: Configure Your Editor and Development Workflow](09-editors-and-development-workflows.md).
+
 ## Understanding the Development Toolchain
 
 A development environment consists of several tools. Each tool has a different responsibility.
