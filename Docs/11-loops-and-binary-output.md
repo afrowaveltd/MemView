@@ -339,6 +339,82 @@ Notice that we compute `remaining - 1u` **only when remaining is greater than ze
 
 That is the strategy we will use for our binary display.
 
+### 6.4 Bit positions are about **significance**, not the direction of reading
+
+Before we use a loop to print a byte, let us clarify one easily misunderstood point. **Bit positions are numbered by their mathematical weight.** The least significant bit is position 0, with weight 2^0 = 1. Position 1 has weight 2^1 = 2, and so on.
+
+On the eight-bit-byte computers used for our exercises, the value `0x96` can be written as:
+
+```text
+Position:       7   6   5   4   3   2   1   0
+Bit:            1   0   0   1   0   1   1   0
+Weight:       128  64  32  16   8   4   2   1
+
+0x96 = 128 + 16 + 4 + 2 = 150
+```
+
+![Bit positions and their numerical significance, using the example 0x96](../pictures/bit_positions_and_significance.png)
+
+**MSB** means *most significant bit*, here position 7. **LSB** means *least significant bit*, here position 0.
+
+When we write a binary number in the usual human-readable form, we put the most significant digit on the left:
+
+```text
+0x96 = 10010110 (binary)
+```
+
+However, that familiar printed direction is **not a claim about where individual bits physically sit inside hardware**. C bitwise operators are defined in terms of the integer value and its bit positions. We are selecting and testing a bit by its numerical significance.
+
+Also remember that a C byte is `CHAR_BIT` bits; although it is eight bits on our Debian system, the C language does not require `CHAR_BIT` to equal eight on every possible implementation.
+
+### 6.5 Two display orders, **one unchanged value**
+
+Our helper `check_bit(value, position)` checks whichever position we request. It does not automatically read from right to left or left to right. **The loop chooses the order.**
+
+To make the difference visible, use `0x96` instead of `0xA5`. The latter is a palindrome in binary (`10100101`) and looks the same in either display order, which would hide the difference.
+
+![Comparison of the usual MSB-to-LSB and reverse LSB-to-MSB bit display order](../pictures/bit_display_order_msb_vs_lsb.png)
+
+If we visit positions **7, 6, 5, ..., 0**, our printed digits are:
+
+```text
+Position: 7 6 5 4 3 2 1 0
+Bit:      1 0 0 1 0 1 1 0
+Output:   10010110
+```
+
+If we visit positions **0, 1, 2, ..., 7**, our printed digits are:
+
+```text
+Position: 0 1 2 3 4 5 6 7
+Bit:      0 1 1 0 1 0 0 1
+Output:   01101001
+```
+
+The **stored integer value remains 0x96** in both cases. The second row is a reversed *display sequence*, not a claim that the integer has changed to the conventional binary number `01101001`.
+
+We can demonstrate the ascending order using a simple loop:
+
+```c
+unsigned char value = 0x96u;
+
+for (unsigned int position = 0u;
+     position < (unsigned int)CHAR_BIT;
+     ++position)
+{
+    printf("%d", check_bit(value, position));
+}
+putchar('\n');
+```
+
+On our Debian system this prints `01101001`. The descending loop in the following section prints `10010110`.
+
+**Do not confuse bit display order with endianness.** Endianness normally describes the arrangement of **bytes** within a multi-byte object in memory. For example, the number `0x12345678` can be represented as bytes `78 56 34 12` in little-endian order, or `12 34 56 78` in big-endian order. Neither byte order determines which bit position our `check_bit()` function tests first.
+
+> **A useful summary:** Bits have numerical weights; bytes have addresses; a viewer chooses how to display them.
+
+---
+
 ## 7. Our first binary viewer: use the helpers we wrote
 
 A byte is represented by `CHAR_BIT` bits, where `CHAR_BIT` is defined in `<limits.h>`. On our Debian x86-64 environment, `CHAR_BIT` is eight.
