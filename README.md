@@ -27,6 +27,7 @@ The lessons are written in English, with reproducible terminal commands and expl
 8. [Functions, Headers, and Separate Compilation](Docs/08-modules-headers-and-separate-compilation.md) — modules, include guards, function declarations, and linking object files.
 9. [Configure Your Editor and Development Workflow](Docs/09-editors-and-development-workflows.md) — verified VS Code/Make setup, IntelliSense vs clangd, troubleshooting, and upcoming Windows/editor tests.
 10. [Our First Automated Tests in C](Docs/10-first-automated-c-tests.md) — assertions, separate test executables, deliberate failures, and a `make test` target.
+11. [Loops in C and Our First Binary Display](Docs/11-loops-and-binary-output.md) — `while`, `do ... while`, `for`, `break`, `continue`, unsigned loop traps, and printing a byte in binary.
 
 The [pictures](pictures/) directory contains diagrams and quick-reference illustrations used in the lessons.
 
@@ -41,7 +42,9 @@ MemView/
 ├── src/            # C implementations and main program
 │   ├── main.c
 │   └── helpers.c
-├── Makefile        # Compile and link the application
+├── tests/          # Automated C tests
+│   └── test_helpers.c
+├── Makefile        # Compile, link, and run tests
 ├── README.md
 └── .gitignore
 ```
