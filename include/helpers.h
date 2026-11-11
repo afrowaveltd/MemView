@@ -8,11 +8,25 @@
 
 int check_bit(unsigned char value, unsigned int position);
 
-/* 
+/*
  * Set a specific bit to 1
  * Returns the modified byte.
  */
 
 unsigned char set_bit(unsigned char value, unsigned int position);
+
+/*
+ * Clear a specific bit to 0
+ * Returns the modified byte.
+ */
+
+unsigned char clear_bit(unsigned char value, unsigned int position);
+
+/*
+ * Toggle a specific bit.
+ * Returns the modified byte.
+ */
+
+unsigned char toggle_bit(unsigned char value, unsigned int position);
 
 #endif
