@@ -212,6 +212,66 @@ Within VS Code:
 
 Checkpoint: `make` succeeds, `helpers.h` resolves, the editor does not show false missing-header errors, and the actual project builds from both terminal and task.
 
+### 3.6 Allman brace style: match the C# formatting habit
+
+**Status: verified in VS Code on Debian with MemView, 11 November 2026.**
+
+A programmer coming from C# may prefer the **Allman** style: opening braces begin on their own line.
+
+```c
+int main(void)
+{
+    if (value > 0)
+    {
+        /* Work */
+    }
+}
+```
+
+The default C formatting style suggested by an editor may instead place the opening brace at the end of the control-statement line. This is a **formatting preference**, not a difference in C semantics.
+
+We successfully configured the editor using a project-root `.clang-format` file:
+
+```yaml
+BasedOnStyle: Microsoft
+BreakBeforeBraces: Allman
+IndentWidth: 4
+UseTab: Never
+ColumnLimit: 0
+AllowShortFunctionsOnASingleLine: None
+```
+
+The `BreakBeforeBraces: Allman` setting is the crucial part. The remaining settings specify a consistent indentation and wrapping style; they can be adjusted separately. **Indentation in the GNU Makefile is an exception:** Make recipe lines require tabs, so we are configuring C files, not reformatting the Makefile as C source.
+
+In VS Code, configure `.vscode/settings.json` (merge these keys with any existing JSON settings rather than creating duplicate root objects):
+
+```json
+{
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.clang_format_style": "file",
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true
+    }
+}
+```
+
+Then use **Format Document** or save a `.c` file after setting a deliberately non-Allman brace. The editor reformats the brace onto the next line.
+
+We observed that this **worked** in the Debian VS Code setup even after disabling the **clangd** extension. These names refer to different tools:
+
+- **clang-format** formats source code and reads the `.clang-format` style file.
+- **clangd** is a language server providing semantic analysis and diagnostics.
+- **GCC** compiles the C program; the formatting does not change the language rules or replace our Makefile.
+
+Note that **Format on Save** and **automatic insertion of a brace while typing** are different editor features. If the first works but a snippet inserts a brace on the same line while typing, review the relevant snippet or editor setting rather than changing the compiler configuration.
+
+The `.clang-format` file was initially tested locally. We should share it in Git after checking the desired style and ensuring it will not unintentionally reformat unrelated files. Our source files currently use Allman-style braces already, so the configuration formalizes an existing habit.
+
+Reference: [clang-format style options](https://clang.llvm.org/docs/ClangFormatStyleOptions.html).
+
+---
+
 ## 4. Alternative: configure clangd deliberately
 
 **Status: documented option, not yet our tested setup.**
