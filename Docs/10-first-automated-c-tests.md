@@ -1,6 +1,6 @@
 # Lesson 10: Our First Automated Tests in C
 
-> **Learning status:** We have successfully tried the first helper-function tests locally on Debian. This chapter records the working approach. The separate `tests/test_helpers.c` file and the `make test` target are still to be committed to the project repository; do not assume they are already present in a fresh checkout.
+> **Learning status:** We successfully tested the helper functions on Debian and have since committed `tests/test_helpers.c` and a Makefile `test` target to MemView. This lesson records how we developed and verified them, including the original manual compilation step.
 
 ## What we will learn
 
@@ -231,6 +231,8 @@ This experiment proves that the test checks real behavior rather than merely pri
 Once the manual compilation is understood, we can automate it.
 
 In the root Makefile, add `test` to the phony list:
+
+> **Maintenance note:** When reviewing the committed Makefile, we noticed it currently says `.PHONY: all clean tests` (plural), but its runnable target is `test` (singular). The correct declaration is `.PHONY: all clean test`. Tests work now because there is no file named `test`, but using the correct name avoids a subtle future bug.
 
 ```makefile
 .PHONY: all clean test
