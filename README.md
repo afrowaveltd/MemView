@@ -29,6 +29,7 @@ The lessons are written in English, with reproducible terminal commands and expl
 10. [Our First Automated Tests in C](Docs/10-first-automated-c-tests.md) — assertions, separate test executables, deliberate failures, and a `make test` target.
 11. [Loops in C and Our First Binary Display](Docs/11-loops-and-binary-output.md) — `while`, `do ... while`, `for`, `break`, `continue`, unsigned loop traps, and printing a byte in binary.
 12. [Arrays, Contiguous Memory, and sizeof](Docs/12-arrays-memory-layout-and-sizeof.md) — array layout, byte sizes, `size_t`, indexing, bounds, and array-versus-pointer behavior.
+13. [Nested Loops and Our First Multi-Byte Display](Docs/13-nested-loops-and-byte-display.md) — combine arrays, reusable bit helpers, and nested loops into hex/binary byte output.
 
 The [pictures](pictures/) directory contains diagrams and quick-reference illustrations used in the lessons.
 
