@@ -1,6 +1,5 @@
 #include <limits.h>
-#include <stdio.h>
-
+#include "helpers.h"
 /*
  * Check whether a specific bit is set.
  */

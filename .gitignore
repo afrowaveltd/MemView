@@ -30,6 +30,9 @@ cmake-build-*/
 *.suo
 *.user
 
+# Visual Studio code
+.vscode/
+
 # CLion local configuration
 .idea/
 
