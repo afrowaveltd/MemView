@@ -24,6 +24,7 @@ The lessons are written in English, with reproducible terminal commands and expl
 5. [GNU Make](Docs/05-gnu-make.md) — incremental builds, explicit rules, ordinary variables, automatic variables, and pattern rules.
 6. [C Integer Types, Bytes, and Signedness](Docs/06-c-integer-types.md) — `sizeof`, character constants, integer promotions, unsigned wraparound, and signed overflow.
 7. [Bitwise Operations, Shifts, and Masks](Docs/07-bitwise-operations-and-masks.md) — AND, OR, XOR, NOT, bit shifts, and reading individual bits.
+8. [Functions, Headers, and Separate Compilation](Docs/08-modules-headers-and-separate-compilation.md) — modules, include guards, function declarations, and linking object files.
 
 The [pictures](pictures/) directory contains diagrams and quick-reference illustrations used in the lessons.
 
@@ -31,9 +32,14 @@ The [pictures](pictures/) directory contains diagrams and quick-reference illust
 
 ```text
 MemView/
-├── Docs/       # English learning materials
-├── pictures/   # Illustrations and reference sheets
-├── src/        # C source code
+├── Docs/           # English learning materials
+├── include/        # Public module headers
+│   └── helpers.h
+├── pictures/       # Illustrations and reference sheets
+├── src/            # C implementations and main program
+│   ├── main.c
+│   └── helpers.c
+├── Makefile        # Compile and link the application
 ├── README.md
 └── .gitignore
 ```
