@@ -28,6 +28,7 @@ The lessons are written in English, with reproducible terminal commands and expl
 9. [Configure Your Editor and Development Workflow](Docs/09-editors-and-development-workflows.md) — verified VS Code/Make setup, IntelliSense vs clangd, troubleshooting, and upcoming Windows/editor tests.
 10. [Our First Automated Tests in C](Docs/10-first-automated-c-tests.md) — assertions, separate test executables, deliberate failures, and a `make test` target.
 11. [Loops in C and Our First Binary Display](Docs/11-loops-and-binary-output.md) — `while`, `do ... while`, `for`, `break`, `continue`, unsigned loop traps, and printing a byte in binary.
+12. [Arrays, Contiguous Memory, and sizeof](Docs/12-arrays-memory-layout-and-sizeof.md) — array layout, byte sizes, `size_t`, indexing, bounds, and array-versus-pointer behavior.
 
 The [pictures](pictures/) directory contains diagrams and quick-reference illustrations used in the lessons.
 
